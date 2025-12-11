@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Only Finance | Digital Infrastructure & Telecom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            /* Palette: Cyber & Crypto */
+            --primary-neon: #00F0FF; /* Cyan Neon */
+            --secondary-purple: #7000FF; /* Electric Purple */
+            --bg-dark: #050510; /* Deep Space Black */
+            --bg-card: #0F0F1A; /* Card Background */
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0B0;
+            
+            --font-head: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            
+            --container-width: 1200px;
+            --section-padding: 100px 0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            background: linear-gradient(90deg, #FFFFFF, var(--primary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* =========================================
+           2. UTILITIES
+           ========================================= */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .text-center { text-align: center; }
+
+        .section-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            display: block;
+            color: var(--secondary-purple);
+            font-family: var(--font-head);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--secondary-purple), var(--primary-neon));
+            color: var(--bg-dark);
+            font-family: var(--font-head);
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-neon);
+            color: var(--bg-dark);
+        }
+
+        /* =========================================
+           3. HEADER
+           ========================================= */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(112, 0, 255, 0.3);
+            padding: 20px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--primary-neon);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: var(--primary-neon);
+            text-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        /* =========================================
+           4. HERO SECTION
+           ========================================= */
+        .hero {
+            height: 100vh;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #050510 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Grid Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(rgba(112, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(112, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* =========================================
+           5. ABOUT US
+           ========================================= */
+        .about {
+            padding: var(--section-padding);
+            background-color: var(--bg-dark);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+        }
+
+        .highlight-box {
+            border: 1px solid var(--primary-neon);
+            padding: 20px;
+            background: rgba(0, 240, 255, 0.05);
+            margin-top: 30px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(112, 0, 255, 0.2);
+            border: 1px solid var(--secondary-purple);
+        }
+
+        /* =========================================
+           6. SERVICES
+           ========================================= */
+        .services {
+            padding: var(--section-padding);
+            background-color: var(--bg-card);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--secondary-purple);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            background: var(--primary-neon);
+            width: 4px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-neon);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           7. ADVANTAGES
+           ========================================= */
+        .advantages {
+            padding: var(--section-padding);
+            background-color: var(--bg-dark);
+            position: relative;
+        }
+
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .adv-item {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid var(--text-muted);
+            border-radius: 10px;
+        }
+
+        .adv-item h4 {
+            color: var(--primary-neon);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           8. NETWORK INFRASTRUCTURE (PROCESS)
+           ========================================= */
+        .process {
+            padding: var(--section-padding);
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: var(--font-head);
+            font-size: 4rem;
+            color: rgba(112, 0, 255, 0.2);
+            font-weight: 700;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================================
+           9. CONTACT
+           ========================================= */
+        .contact {
+            padding: var(--section-padding);
+            background-color: var(--bg-dark);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            background: var(--bg-card);
+            padding: 60px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-info {
+            padding-right: 40px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+        }
+
+        .info-item h5 {
+            color: var(--primary-neon);
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .info-item p {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* =========================================
+           10. FOOTER
+           ========================================= */
+        footer {
+            background-color: #000;
+            color: var(--text-muted);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.8rem; }
+            .about-grid, .contact-container { grid-template-columns: 1fr; }
+            .adv-grid, .process-steps { flex-direction: column; }
+            .contact-info { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-right: 0; padding-bottom: 40px; margin-bottom: 40px; }
+            .nav-wrapper { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">ONLY <span>FINANCE</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">Infrastructure</a></li>
+                    <li><a href="#services">Hosting</a></li>
+                    <li><a href="#advantages">Network</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>High-Performance Infrastructure for <br> Digital Assets</h1>
+            <p>Only Finance Ltda (DBA OnlyCoiners) provides enterprise-grade internet hosting and telecommunications solutions. We power the backbone of the digital economy in Recife.</p>
+            <a href="#contact" class="btn">Deploy Node</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <span class="section-subtitle">Our Mission</span>
+                <h2 class="section-title">Connectivity for the Future</h2>
+                <p>Located in Recife, Pernambuco—a burgeoning tech hub—ONLY FINANCE LTDA operates at the cutting edge of "Wired and Wireless Telecommunications." Led by Junyong Bang, we do business as <strong>ONLYCOINERS</strong>, reflecting our dedication to the digital asset ecosystem.</p>
+                <p>We are not a traditional bank. We are an infrastructure provider. We specialize in "Internet host services" tailored for high-frequency trading, blockchain node hosting, and secure data transmission.</p>
+                <p>Our mission is to provide the low-latency, high-availability infrastructure required for modern financial technology and digital currency operations.</p>
+                
+                <div class="highlight-box">
+                    <h4 style="margin-bottom: 10px; color: #fff;">Tech-Driven Finance</h4>
+                    <p style="margin-bottom: 0;">Combining robust telecom networks with secure hosting environments for maximum uptime.</p>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1558494949-ef526b0042a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Server Infrastructure">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Core Capabilities</span>
+                <h2 class="section-title">Digital Solutions</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">&#128421;</div> <h3>Dedicated Hosting</h3>
+                    <p>Secure, high-performance servers optimized for blockchain nodes, mining operations, and financial transaction processing. Located in secure facilities in Recife.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">&#128225;</div> <h3>Telecom Infrastructure</h3>
+                    <p>We provide wired and wireless telecommunications solutions designed for redundancy and speed, ensuring your connection to the global market never drops.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">&#128274;</div> <h3>Data Security</h3>
+                    <p>Protecting your digital assets is paramount. Our hosting environments feature advanced DDoS protection and physical security protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advantages" class="advantages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Why OnlyCoiners</span>
+                <h2 class="section-title">The Digital Edge</h2>
+            </div>
+
+            <div class="adv-grid">
+                <div class="adv-item">
+                    <h4>Low Latency</h4>
+                    <p>Our direct fiber connections reduce ping times, giving traders and automated systems a competitive advantage in volatile markets.</p>
+                </div>
+                <div class="adv-item">
+                    <h4>Strategic Location</h4>
+                    <p>Based in Recife, we leverage the city's status as a technological port to offer superior connectivity to both South American and global networks.</p>
+                </div>
+                <div class="adv-item">
+                    <h4>Specialized Support</h4>
+                    <p>Our team understands the specific power and bandwidth needs of digital finance and crypto operations better than general ISPs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Deployment</span>
+                <h2 class="section-title">Get Online Fast</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <h3>Consult</h3>
+                        <p>Define your bandwidth, power, and hardware requirements with our engineers.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <h3>Provision</h3>
+                        <p>We configure your dedicated server or establish your secure network link.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <h3>Launch</h3>
+                        <p>Gain full root access and 24/7 monitoring capabilities for your operations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-subtitle">Connect</span>
+                <h2 class="section-title">Power Your Operations</h2>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h5>Headquarters</h5>
+                        <p>RECIFE, PERNAMBUCO<br>Brazil</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h5>Electronic Mail</h5>
+                        <p>info@onlyfinancebr.info</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h5>Key Principal</h5>
+                        <p>Junyong Bang</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <input type="text" placeholder="Name / Company" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <select>
+                            <option value="" disabled selected>Interest</option>
+                            <option value="Hosting">Server Hosting</option>
+                            <option value="Connectivity">Telecom Connectivity</option>
+                            <option value="Colocation">Colocation</option>
+                        </select>
+                        <textarea placeholder="Describe your technical requirements..."></textarea>
+                        <button type="submit" class="btn">Request Access</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ONLY FINANCE LTDA (DBA ONLYCOINERS). All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: var(--text-muted);">Wired and Wireless Telecommunications | Internet Host Services</p>
+        </div>
+    </footer>
+
+</body>
+</html>
